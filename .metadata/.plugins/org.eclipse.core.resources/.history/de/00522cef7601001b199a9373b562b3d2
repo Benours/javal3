@@ -1,0 +1,16 @@
+import java.io.*;
+
+public class FicText2 {
+	public static void main(String args []) throws IOException {
+		BufferedReader lectureFichier = new BufferedReader(new FileReader ("essai.txt"));
+		System.out.println("Lecture du fichier essai.txt");
+		String s = lectureFichier.readLine();
+		
+		while(s != null) {
+			System.out.println(s);
+			s = lectureFichier.readLine();
+		}
+		lectureFichier.close();
+		System.out.println("Fin du fichier");
+	}
+}

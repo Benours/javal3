@@ -1,0 +1,19 @@
+import java.io.*;
+
+public class FichierText {
+	File fichier;
+	String contenu;
+	
+	public FichierText(File f) {
+		if(f.existe()) {
+			fichier = f;
+		}
+	}
+	public FichierText(String chemin) {
+		fichier = new File(chemin);
+		if (!fichier.existe());
+	}
+	public Boolean existe() {
+		return fichier.exists();
+	}
+}

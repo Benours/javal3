@@ -1,9 +1,9 @@
 public class Pile {
 
-	private static final int TAILLE_MAX = 100;// taille maximum de la pile
+	private static final int TAILLE_MAX = 2;// taille maximum de la pile
 	private int t[];	// tableau stockant les elements de la pile
 	private int nb;	// nombre d elements dans la pile
-	
+
 	public Pile() {
 		t = new int[TAILLE_MAX];
 		nb = 0;
@@ -13,49 +13,51 @@ public class Pile {
 
 	public void empiler(int i) throws PilePleineException {
 		if (nb == TAILLE_MAX) throw new PilePleineException();
-		t[nb] = i;
+		t[nb] = i; 
 		nb++;
-		System.out.println("sortie de empiler");	
+		//System.out.println("sortie de empiler");	
 	}
-	
+
 	public int sommet() throws PileVideException {
 		if (nb == 0) throw new PileVideException();
-		System.out.println("sortie de sommet");
+		//System.out.println("sortie de sommet");
 		return t[nb-1];
 	}
 
 	public void depiler() throws PileVideException {
 		if (nb == 0) throw new PileVideException();
 		nb--;
-		System.out.println("sortie de depiler");	
+		//System.out.println("sortie de depiler");	
 	}
-	
-	public void depilerTout() {
-		try {
-		   while(true) {
-		 	System.out.println(sommet());
+
+	public void depilerTout() throws PileVideException {
+		while(true) {
+			System.out.println(sommet());
 			depiler();
-		    }
 		}
-               catch (PileVideException e)
-		   {System.out.println("le depilerTout est passe par la");}
-		System.out.println("sortie du depilerTout");
+		//System.out.println("sortie du depilerTout");
 	}
 
 	public static void main(String[] args) {
 		Pile p = new Pile();
 		try {
-		    p.empiler(2);
-		    p.empiler(4);
-		    p.depilerTout();
-		    System.out.println(p.sommet());
+			p.empiler(2);
+			p.empiler(4);
+			p.depilerTout();
+			System.out.println(p.sommet());
 		}
 		catch (PileVideException e)
-		   {System.out.println("Le main pense que la pile est vide");}
+		{System.out.println("Le main pense que la pile est vide");
+
+		}
 		catch (PilePleineException e)
-		   {System.out.println("Le main pense que la pile est pleine");}
+		{System.out.println("Le main pense que la pile est pleine");
+		}
+
 		catch (Exception e)
-		   {System.out.println("Le main est passe par la");}
-		System.out.println("sortie du main");
+		{System.out.println("Le main est passe par la");
+		}
+
+		//System.out.println("sortie du main");
 	}
 }

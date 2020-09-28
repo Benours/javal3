@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class FichierText {
+	File fichier;
+	String contenu;
+
+	public FichierText(File f) throws FileNotFoundException{
+		if(!f.exists()) throw new FileNotFoundException();
+		fichier = f;
+	}
+
+	public FichierText(String chemin) throws FileNotFoundException{
+		fichier = new File(chemin);
+		if (!fichier.exists()) throw new FileNotFoundException();
+	}
+
+	public int nbLigne() throws IOException, FileNotFoundException {
+		int nb = 0;
+		BufferedReader lectureFichier = new BufferedReader(new FileReader(fichier.getAbsolutePath()));
+		String s = lectureFichier.readLine();
+		while(s!=null) {
+			nb++;
+			s = lectureFichier.readLine();
+		}
+		lectureFichier.close();
+		return nb;
+	}
+
+	public int nbCaractere() throws IOException, FileNotFoundException {
+		int nb = 0;
+		BufferedReader lectureFichier = new BufferedReader(new FileReader(fichier.getAbsolutePath()));
+		String s = lectureFichier.readLine();
+		while (s!= null) {
+			String[] strs = s.split(" ");
+			for (String str : strs) {
+				nb += str.length();
+			}
+			s = lectureFichier.readLine();
+		}
+		lectureFichier.close();
+		return nb;
+	}
+
+	public void afficher() throws IOException, FileNotFoundException {
+		BufferedReader lectureFichier = new BufferedReader(new FileReader(fichier.getAbsolutePath()));
+		contenu = "";
+		String s = lectureFichier.readLine();
+		while(s!=null) {
+			contenu += s+"\n";
+			s = lectureFichier.readLine();
+		}
+		lectureFichier.close();
+		System.out.println(contenu);
+	}
+
+	public static void main(String args[]) throws IOException{
+		Scanner s = new Scanner(System.in);
+		String chemin = s.next();
+		while (true) {
+			try {
+				FichierText ft = new FichierText(chemin);
+				ft.afficher();
+				System.out.println("nb ligne: "+ft.nbLigne());
+				System.out.println("\nnb caractere: "+ft.nbCaractere());
+			}
+			catch(FileNotFoundException e) {
+				System.out.println("File not found");
+				chemin = s.next();
+			}
+		}
+	}
+}

@@ -1,0 +1,48 @@
+import java.io.*;
+
+public class FichierText {
+	File fichier;
+	String contenu;
+	
+	public FichierText(File f) {
+		if(f.existe()) {
+			fichier = f;
+		}
+	}
+	
+	public FichierText(String chemin) {
+		fichier = new File(chemin);
+		if (!fichier.existe());
+	}
+	
+	public Boolean existe() {
+		return fichier.exists();
+	}
+	
+	public int nbLigne() throws IOException {
+		int nb = 0;
+		BufferedReader lectureFichier = new BufferedReader(new FileReader(fichier.getAbsolutePath()));
+		String s = lectureFichier.readLine();
+		while(s!=null) {
+			nb++;
+			s = lectureFichier.readLine();
+		}
+		lectureFichier.close();
+		return nb;
+	}
+	
+	public int nbCaractere() throws IOException {
+		int nb = 0;
+		BufferedReader lectureFichier = new BufferedReader(new FileReader(fichier.getAbsolutePath()));
+		String s = lectureFichier.readLine();
+		String str;
+		while (s!= null) {
+			String[] strs = s.split(" ");
+			for (String str : strs) {
+				nb += str.length();
+			}
+		}
+		lectureFichier.close();
+		return nb;
+	}
+}

@@ -1,0 +1,6 @@
+import java.io*;
+public class FicText2 {
+	public static void main(Strings args[]) throws IOException {
+		
+	}
+}
