@@ -1,0 +1,14 @@
+package CS;
+
+public class HeureSimple {
+	private int H;
+	private int M;
+	
+	public HeureSimple(int H, int M) {
+		if (H < 24 && H >= 0) {
+			if (M % 5 < 55 && M % 5 >= 0) {
+				
+			}
+		}
+	}
+}
