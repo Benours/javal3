@@ -1,5 +1,0 @@
-package CS;
-
-public enum Lieu {
-	AA, BB, CC;
-}
